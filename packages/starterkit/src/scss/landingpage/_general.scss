@@ -1,0 +1,232 @@
+// Banner
+.bannerTitle {
+    font-size: 36px;
+    line-height: 40px;
+}
+
+@media (min-width: 900px) {
+    .bannerTitle {
+        font-size: 54px;
+        line-height: 60px;
+    }
+}
+
+.bannerSlider {
+    padding: 25.6px;
+    min-width: 2000px;
+    height: calc(100vh - 100px);
+    max-height: 790px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.animateUp {
+    animation: 35s linear 0s infinite normal none running slideup;
+}
+
+@keyframes slideup {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0px, -100%, 0px);
+    }
+}
+
+.animateDown {
+    animation: 35s linear 0s infinite normal none running slideDown;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        transform: translate3d(0px, 0, 0px);
+    }
+}
+
+//
+// Sections common
+//
+
+.sectionTitle {
+    font-size: 25px;
+    line-height: 30px;
+}
+
+@media (min-width: 1200px) {
+    .sectionTitle {
+        font-size: 36px;
+        line-height: 43px;
+    }
+}
+
+//
+// frameworks
+//
+.slider-group {
+    animation: slide 45s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+//
+// support
+//
+.ticket {
+    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    background-image: url('@/assets/images/landingpage/shape/line-bg.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+//
+// money back
+//
+.money-back {
+    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    background-image: url('@/assets/images/landingpage/shape/line-bg-2.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.btn-custom-md {
+    height: 53px !important;
+    padding: 0 48px !important;
+}
+
+.btn-custom-lg {
+    height: 56px !important;
+    padding: 0 48px !important;
+}
+
+.btn-custom {
+    height: 53px;
+    padding: 0 31px;
+    &.lp-btn-shadow {
+        box-shadow: rgb(0 0 0 / 8%) 0px 12px 40px -8px;
+    }
+}
+
+.chip-custom {
+    font-weight: 600;
+    padding: 5px 25px !important;
+    height: 32px !important;
+    font-size: 12px !important;
+}
+
+//
+// product slider
+//
+.product-slider {
+    &:before {
+        background-repeat: no-repeat;
+        content: '';
+        position: absolute;
+        background-image: url('@/assets/images/landingpage/shape/shape-2.svg');
+        bottom: -10px;
+        height: 400px;
+        left: 35px;
+        width: 388px;
+    }
+    &:after {
+        background-repeat: no-repeat;
+        content: '';
+        position: absolute;
+        background-image: url('@/assets/images/landingpage/shape/shape-1.svg');
+        height: 252px;
+        right: -50px;
+        top: -40px;
+        width: 267px;
+    }
+}
+
+//
+// our products
+//
+.ourproducts {
+    .carousel__slide {
+        display: block;
+        img {
+            border-radius: 12px;
+            box-shadow: 16px 16px 40px 5px rgb(29 53 79 / 10%);
+            margin: 0 auto;
+            max-width: 800px;
+            width: 100%;
+        }
+    }
+}
+
+.lp-wraper {
+    overflow: hidden;
+    .carousel__pagination {
+        .carousel__pagination-button {
+            padding: 6px;
+            &::after {
+                height: 8px;
+                width: 8px;
+                border-radius: 50%;
+                background-color: transparent;
+                background-color: rgb(var(--v-theme-textPrimary));
+                opacity: 0.25;
+            }
+            &:hover {
+                &::after {
+                    background-color: #000;
+                    opacity: 1;
+                }
+            }
+        }
+        .carousel__pagination-button--active {
+            &::after {
+                background-color: #000;
+                opacity: 1;
+            }
+        }
+    }
+
+    .carousel {
+        z-index: 2;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .m-btn-full {
+        width: 100%;
+    }
+}
+
+.v-btn--size-default {
+    &.nav-links {
+        font-size: $font-size-root !important;
+        .v-btn__overlay {
+            display: none;
+        }
+        &:hover {
+            color: rgb(var(--v-theme-primary)) !important;
+        }
+    }
+}
+
+
+.row-up {
+    z-index: 1;
+    position: relative;
+}
+.prev-btn{
+    margin: 0 110px;
+}

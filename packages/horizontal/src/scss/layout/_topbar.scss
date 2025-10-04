@@ -1,0 +1,37 @@
+.v-app-bar {
+    .v-toolbar__content {
+        padding: 0 24px;
+
+        >.v-btn:first-child {
+            margin-inline-start: 0;
+        }
+
+        .v-btn {
+            color: rgba(var(--v-theme-textSecondary), 0.8) !important;
+        }
+    }
+}
+
+.custom-text-primary {
+    &.v-list-item:hover>.v-list-item__overlay {
+        display: none;
+    }
+
+    .custom-title {
+        color: rgb(var(--v-theme-textPrimary)) !important;
+    }
+
+    &:hover {
+        .custom-title {
+            color: rgb(var(--v-theme-primary)) !important;
+        }
+    }
+}
+
+@media screen and (max-width:1279px) {
+    .mini-sidebar {
+        .v-navigation-drawer.v-navigation-drawer--left {
+            width: 270px !important;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+// 
+// common
+// 
+
+.inside-left-sidebar {
+    .left-part {
+        width: 240px;
+    }
+}
+
+.chatlist{
+    .v-list-item__prepend > .v-avatar ~ .v-list-item__spacer{
+        width: 0;
+    }
+}

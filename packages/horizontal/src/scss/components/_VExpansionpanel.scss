@@ -1,0 +1,6 @@
+.v-expansion-panel-title__overlay{
+    background: rgba(var(--v-theme-primary));
+}
+.v-expansion-panel:not(:first-child)::after {
+    border-color: transparent !important;
+}

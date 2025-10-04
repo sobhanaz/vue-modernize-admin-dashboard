@@ -1,0 +1,94 @@
+.v-btn.customizer-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 50%;
+    .icon {
+        animation: progress-circular-rotate 1.4s linear infinite;
+        transform-origin: center center;
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+.btn-group-custom {
+    &.v-btn-group {
+        height: 66px !important;
+        overflow: unset !important;
+        .v-btn {
+            height: 66px !important;
+            padding: 0 20px;
+            border: 1px solid rgb(var(--v-theme-borderColor), 0.7) !important;
+            transition: all 0.1s ease-in 0s;
+            &:hover {
+                transform: scale(1.05);
+            }
+            &.text-primary {
+                .v-btn__overlay {
+                    background: transparent !important;
+                }
+                .icon {
+                    color: rgb(var(--v-theme-primary)) !important;
+                    fill: rgb(var(--v-theme-primary), 0.2);
+                }
+                color: rgb(var(--v-theme-textSecondary)) !important;
+            }
+        }
+    }
+}
+
+.hover-btns {
+    transition: all 0.1s ease-in 0s;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+// all theme colors
+.v-avatar.themeBlue,
+.v-avatar.themeDarkBlue {
+    background: #5d87ff;
+}
+.v-avatar.themeAqua,
+.v-avatar.themeDarkAqua {
+    background: #0074ba;
+}
+
+.v-avatar.themePurple,
+.v-avatar.themeDarkPurple {
+    background: #763ebd;
+}
+.v-avatar.themeGreen,
+.v-avatar.themeDarkGreen {
+    background: #0a7ea4;
+}
+
+.v-avatar.themeCyan,
+.v-avatar.themeDarkCyan {
+    background: #01c0c8;
+}
+
+.v-avatar.themeOrange,
+.v-avatar.themeDarkOrange {
+    background: #fa896b;
+}
+
+
+.DARK_BLUE_THEME, .DARK_AQUA_THEME, .DARK_ORANGE_THEME, .DARK_PURPLE_THEME, .DARK_GREEN_THEME, .DARK_CYAN_THEME {
+    .togglethemeBlue {
+        display: block !important;
+    }
+
+    .togglethemeDarkBlue {
+        display: none !important;
+    }
+}
+
+.BLUE_THEME, .AQUA_THEME, .ORANGE_THEME, .PURPLE_THEME, .GREEN_THEME, .CYAN_THEME {
+    .togglethemeDarkBlue {
+        display: block !important;
+    }
+
+    .togglethemeBlue {
+        display: none !important;
+    }
+}

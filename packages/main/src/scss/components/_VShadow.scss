@@ -1,0 +1,24 @@
+.elevation-9 {
+  box-shadow: rgb(0 0 0 / 5%) 0px 9px 17.5px !important;
+}
+
+.elevation-10 {
+  box-shadow: $box-shadow !important;
+}
+
+.elevation-1 {
+  box-shadow:0px 56px 56px -25px rgba(0,0,0,0.08) !important
+}
+.elevation-2 {
+  box-shadow:1px 3px 0px 0px rgba(235,241,246,0.25)!important
+}
+.elevation-3 {
+  box-shadow: rgba(145,158,171,0.2) 0px 0px 2px 0px, rgba(145,158,171,0.12) 0px 12px 24px -4px  !important;
+}
+.primary-shadow {
+  box-shadow: rgba(var(--v-theme-primary), 0.30) 0px 12px 14px 0px;
+  &:hover {
+    box-shadow: none;
+  }
+}
+

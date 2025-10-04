@@ -1,0 +1,24 @@
+//
+// global
+
+.v-btn-group .v-btn {
+    height: inherit !important;
+}
+
+.v-btn{
+    text-transform: capitalize;
+    letter-spacing: 0;
+    border-radius: 7px;
+
+    &.v-btn--variant-elevated{
+        box-shadow: none !important;
+    }
+
+    &.v-btn--icon{
+        border-radius: 50%;
+    }
+}
+
+.v-btn-group {
+    border-color: rgb(var(--v-theme-borderColor)) !important;
+}

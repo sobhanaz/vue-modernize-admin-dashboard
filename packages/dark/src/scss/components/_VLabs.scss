@@ -1,0 +1,18 @@
+.v-time-picker-clock{
+    background: rgb(var(--v-theme-grey100)) ; 
+}   
+.v-time-picker-controls__ampm__btn.v-btn.v-btn--density-default{
+    border: 0 !important;
+}
+.v-stepper-header,.v-stepper.v-sheet{
+    box-shadow: none !important;
+}
+
+.v-time-picker-controls__time__btn.v-btn--density-default.v-btn {
+    width: 55px !important;
+    height: 55px !important;
+    font-size: 30px;
+}
+.v-time-picker-controls__time__separator {
+    font-size: 36px !important;
+}
