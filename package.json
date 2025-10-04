@@ -1,0 +1,84 @@
+{
+  "name": "modernize-vue3-admin-dashboard",
+  "version": "6.1.0",
+  "description": "A Modern, Responsive Vue 3 Admin Dashboard Template with Multiple Layout Variations",
+  "keywords": [
+    "vue3",
+    "admin-dashboard",
+    "vuetify",
+    "typescript",
+    "dashboard-template",
+    "admin-template",
+    "vue-admin",
+    "material-design",
+    "responsive",
+    "dark-mode",
+    "rtl-support",
+    "multi-layout"
+  ],
+  "author": {
+    "name": "Sobhan Azimzadeh",
+    "email": "contact@tecso.team",
+    "url": "https://github.com/sobhanaz"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/sobhanaz/vue-modernize-admin#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sobhanaz/vue-modernize-admin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sobhanaz/vue-modernize-admin/issues",
+    "email": "support@tecso.team"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "scripts": {
+    "install:all": "npm run install:main && npm run install:dark && npm run install:horizontal && npm run install:minisidebar && npm run install:rtl && npm run install:starterkit",
+    "install:main": "cd packages/main && npm install",
+    "install:dark": "cd packages/dark && npm install",
+    "install:horizontal": "cd packages/horizontal && npm install",
+    "install:minisidebar": "cd packages/minisidebar && npm install",
+    "install:rtl": "cd packages/rtl && npm install",
+    "install:starterkit": "cd packages/starterkit && npm install",
+    "dev:main": "cd packages/main && npm run dev",
+    "dev:dark": "cd packages/dark && npm run dev",
+    "dev:horizontal": "cd packages/horizontal && npm run dev",
+    "dev:minisidebar": "cd packages/minisidebar && npm run dev",
+    "dev:rtl": "cd packages/rtl && npm run dev",
+    "dev:starterkit": "cd packages/starterkit && npm run dev",
+    "build:all": "npm run build:main && npm run build:dark && npm run build:horizontal && npm run build:minisidebar && npm run build:rtl && npm run build:starterkit",
+    "build:main": "cd packages/main && npm run build",
+    "build:dark": "cd packages/dark && npm run build",
+    "build:horizontal": "cd packages/horizontal && npm run build",
+    "build:minisidebar": "cd packages/minisidebar && npm run build",
+    "build:rtl": "cd packages/rtl && npm run build",
+    "build:starterkit": "cd packages/starterkit && npm run build",
+    "lint:all": "npm run lint:main && npm run lint:dark && npm run lint:horizontal && npm run lint:minisidebar && npm run lint:rtl && npm run lint:starterkit",
+    "lint:main": "cd packages/main && npm run lint",
+    "lint:dark": "cd packages/dark && npm run lint",
+    "lint:horizontal": "cd packages/horizontal && npm run lint",
+    "lint:minisidebar": "cd packages/minisidebar && npm run lint",
+    "lint:rtl": "cd packages/rtl && npm run lint",
+    "lint:starterkit": "cd packages/starterkit && npm run lint",
+    "clean": "rimraf packages/*/node_modules packages/*/dist",
+    "docs:serve": "cd docs && python -m http.server 8080",
+    "release": "standard-version",
+    "changelog": "standard-version --dry-run"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "standard-version": "^9.5.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
