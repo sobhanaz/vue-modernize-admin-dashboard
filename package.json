@@ -72,9 +72,6 @@
     "rimraf": "^5.0.5",
     "standard-version": "^9.5.0"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "browserslist": [
     "> 1%",
     "last 2 versions",

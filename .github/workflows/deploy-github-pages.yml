@@ -31,7 +31,9 @@ jobs:
         
     - name: Install dependencies
       working-directory: ./packages/main
-      run: npm install
+      run: |
+        # Use npm install with --no-workspaces to avoid workspace conflicts
+        npm install --no-workspaces
         
     - name: Build Vue application
       working-directory: ./packages/main

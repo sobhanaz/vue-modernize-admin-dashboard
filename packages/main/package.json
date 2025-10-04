@@ -1,5 +1,5 @@
 {
-    "name": "modernize",
+    "name": "@modernize/main",
     "version": "6.1.0",
     "type": "module",
     "scripts": {
