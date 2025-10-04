@@ -9,7 +9,7 @@
 
 **🚀 A Modern, Responsive Vue 3 Admin Dashboard Template with Multiple Layout Variations**
 
-[Live Demo](#) • [Documentation](./docs) • [Bug Reports](../../issues) • [Feature Requests](../../issues)
+[🌐 Live Demo](https://sobhanaz.github.io/vue-modernize-admin-dashboard/) • [📖 Documentation](./docs) • [🐛 Bug Reports](../../issues) • [💡 Feature Requests](../../issues)
 
 </div>
 
