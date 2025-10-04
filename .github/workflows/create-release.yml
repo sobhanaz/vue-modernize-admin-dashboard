@@ -1,0 +1,173 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        registry-url: 'https://npm.pkg.github.com'
+        
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+    - name: Build release assets
+      run: |
+        # Build all packages
+        cd packages/main && npm install && npm run build:ci
+        cd ../dark && npm install && npm run build:ci
+        cd ../horizontal && npm install && npm run build:ci
+        cd ../minisidebar && npm install && npm run build:ci
+        cd ../rtl && npm install && npm run build:ci
+        cd ../starterkit && npm install && npm run build:ci
+        cd ../../
+        
+    - name: Create release archives
+      run: |
+        # Create dist archives for each layout
+        mkdir -p release-assets
+        
+        # Main layout
+        cd packages/main
+        zip -r ../../release-assets/modernize-main-layout-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*"
+        cd ../../
+        
+        # Dark layout
+        cd packages/dark
+        zip -r ../../release-assets/modernize-dark-layout-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*"
+        cd ../../
+        
+        # Horizontal layout
+        cd packages/horizontal
+        zip -r ../../release-assets/modernize-horizontal-layout-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*"
+        cd ../../
+        
+        # Mini sidebar layout
+        cd packages/minisidebar
+        zip -r ../../release-assets/modernize-minisidebar-layout-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*"
+        cd ../../
+        
+        # RTL layout
+        cd packages/rtl
+        zip -r ../../release-assets/modernize-rtl-layout-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*"
+        cd ../../
+        
+        # Starter kit
+        cd packages/starterkit
+        zip -r ../../release-assets/modernize-starterkit-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*"
+        cd ../../
+        
+        # Complete package
+        zip -r release-assets/modernize-complete-v${{ steps.get_version.outputs.VERSION }}.zip . -x "node_modules/*" "*.git*" "release-assets/*"
+        
+    - name: Generate release notes
+      id: release_notes
+      run: |
+        cat > release_notes.md << 'EOF'
+        # 🚀 Modernize Vue 3 Admin Dashboard v${{ steps.get_version.outputs.VERSION }}
+        
+        A powerful, responsive Vue 3 admin dashboard template with multiple layout variations and modern features.
+        
+        ## ✨ What's Included
+        
+        ### 🎨 Layout Packages
+        - **Main Layout** - Classic sidebar navigation
+        - **Dark Layout** - Dark theme optimized
+        - **Horizontal Layout** - Top navigation bar
+        - **Mini Sidebar Layout** - Compact expandable sidebar
+        - **RTL Layout** - Right-to-left language support
+        - **Starter Kit** - Minimal template for custom development
+        
+        ### 🛠️ Tech Stack
+        - **Vue 3.5.7** with Composition API
+        - **Vuetify 3.7.1** with Material Design 3
+        - **TypeScript 5.5.4** for type safety
+        - **Vite 5.4.8** for fast development
+        - **Pinia 2.2.2** for state management
+        - **Vue Router 4.2.5** for routing
+        
+        ### 📊 Features
+        - 🌙 Dark mode support with theme persistence
+        - 🌍 RTL language support
+        - 📱 Fully responsive design
+        - 🧩 100+ pre-built components
+        - 📈 ApexCharts integration
+        - 📅 FullCalendar component
+        - ✏️ TipTap rich text editor
+        - 🔐 Authentication system
+        - 🎯 Form validation with VeeValidate
+        
+        ## 🚀 Quick Start
+        
+        1. **Download** your preferred layout from the assets below
+        2. **Extract** the archive
+        3. **Install** dependencies: `npm install`
+        4. **Start** development server: `npm run dev`
+        5. **Build** for production: `npm run build`
+        
+        ## 🌐 Live Demo
+        
+        Check out the live demo: [https://sobhanaz.github.io/vue-modernize-admin-dashboard/](https://sobhanaz.github.io/vue-modernize-admin-dashboard/)
+        
+        ## 📖 Documentation
+        
+        - [📚 Complete Wiki](./WIKI.md)
+        - [🚀 Quick Start Guide](./README.md#-quick-start)
+        - [🔧 Configuration Guide](./README.md#-configuration)
+        - [🌐 Deployment Guide](./GITHUB_PAGES_DEPLOYMENT.md)
+        
+        ## 🆘 Support
+        
+        - 🐛 [Report Issues](../../issues)
+        - 💬 [GitHub Discussions](../../discussions)
+        - 📧 [Contact Developer](https://github.com/sobhanaz)
+        
+        ## 📦 Package Downloads
+        
+        Choose the layout that best fits your needs:
+        
+        | Layout | Description | Best For |
+        |--------|-------------|----------|
+        | **Main** | Classic sidebar layout | Traditional admin dashboards |
+        | **Dark** | Dark theme optimized | Night usage, modern apps |
+        | **Horizontal** | Top navigation bar | Content-heavy applications |
+        | **Mini Sidebar** | Compact sidebar | Small screens, maximized content |
+        | **RTL** | Right-to-left support | Arabic, Hebrew, Persian apps |
+        | **Starter Kit** | Minimal template | Custom development |
+        | **Complete** | All layouts included | Full package access |
+        
+        ---
+        
+        **Built with ❤️ by [Sobhan Azimzadeh](https://github.com/sobhanaz) | CEO @ [TECSO](https://tecso.team/)**
+        EOF
+        
+        echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+        cat release_notes.md >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+    - name: Create GitHub Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: v${{ steps.get_version.outputs.VERSION }}
+        name: "Modernize Vue 3 Admin Dashboard v${{ steps.get_version.outputs.VERSION }}"
+        body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+        artifacts: "release-assets/*"
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}

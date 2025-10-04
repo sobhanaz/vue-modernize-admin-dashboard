@@ -1,0 +1,53 @@
+name: Publish Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        package: [main, dark, horizontal, minisidebar, rtl, starterkit]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@sobhanaz'
+        
+    - name: Install dependencies
+      working-directory: ./packages/${{ matrix.package }}
+      run: npm install --no-workspaces
+      
+    - name: Update package for GitHub Packages
+      working-directory: ./packages/${{ matrix.package }}
+      run: |
+        # Update package name for GitHub Packages
+        npm pkg set name="@sobhanaz/modernize-${{ matrix.package }}"
+        npm pkg set repository.type="git"
+        npm pkg set repository.url="git+https://github.com/sobhanaz/vue-modernize-admin-dashboard.git"
+        npm pkg set publishConfig.registry="https://npm.pkg.github.com"
+        npm pkg set homepage="https://sobhanaz.github.io/vue-modernize-admin-dashboard/"
+        
+    - name: Build package
+      working-directory: ./packages/${{ matrix.package }}
+      run: npm run build:ci
+      
+    - name: Publish to GitHub Packages
+      working-directory: ./packages/${{ matrix.package }}
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
