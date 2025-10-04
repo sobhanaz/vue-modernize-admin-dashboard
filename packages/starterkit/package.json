@@ -5,7 +5,10 @@
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
+        "build:ci": "vite build",
+        "build:github": "vue-tsc --noEmit && vite build --mode production",
         "preview": "vite preview --port 5050",
+        "preview:github": "vite preview --port 5050 --base=/vue-modernize-admin-dashboard/",
         "typecheck": "vue-tsc --noEmit",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
     },

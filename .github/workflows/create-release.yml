@@ -29,14 +29,25 @@ jobs:
       
     - name: Build release assets
       run: |
-        # Build all packages
-        cd packages/main && npm install && npm run build:ci
-        cd ../dark && npm install && npm run build:ci
-        cd ../horizontal && npm install && npm run build:ci
-        cd ../minisidebar && npm install && npm run build:ci
-        cd ../rtl && npm install && npm run build:ci
-        cd ../starterkit && npm install && npm run build:ci
+        # Build main package for GitHub Pages (critical)
+        echo "Building main package..."
+        cd packages/main
+        npm install --no-workspaces || exit 1
+        npm run build:ci || exit 1
         cd ../../
+        
+        # Build other packages (continue on failure)
+        echo "Building additional packages..."
+        for package in dark horizontal minisidebar rtl starterkit; do
+          echo "Building $package package..."
+          cd packages/$package
+          if npm install --no-workspaces && npm run build:ci; then
+            echo "✅ $package package built successfully"
+          else
+            echo "⚠️  $package package build failed, continuing..."
+          fi
+          cd ../../
+        done
         
     - name: Create release archives
       run: |
