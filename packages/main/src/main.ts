@@ -24,8 +24,6 @@ import VueScrollTo from 'vue-scrollto';
 //LightBox
 import VueEasyLightbox from 'vue-easy-lightbox';
 
-
-
 const i18n = createI18n({
     locale: 'en',
     messages: messages,
@@ -33,27 +31,31 @@ const i18n = createI18n({
     silentFallbackWarn: true
 });
 
-const app = createApp(App);
+// Initialize fake backend
 fakeBackend();
-app.use(router);
 
-app.use(PerfectScrollbar);
-// app.use(VueDragscroll);
+// Create Vue app instance
+const app = createApp(App);
+
+// Register all plugins before mounting
 app.use(createPinia());
-
+app.use(router);
+app.use(vuetify);
+app.use(PerfectScrollbar);
 app.use(VueTablerIcons);
-
 app.use(i18n);
 app.use(Maska);
 app.use(VueApexCharts);
-app.use(vuetify).mount('#app');
 
-//ScrollTop Use
-// app.use(VueScrollTo);
+// ScrollTop configuration
 app.use(VueScrollTo, {
     duration: 1000,
     easing: "ease",
-})
-//Lightbox
-app.use(VueEasyLightbox)
+});
+
+// Lightbox
+app.use(VueEasyLightbox);
+
+// Mount the app (this should be the last operation)
+app.mount('#app');
 

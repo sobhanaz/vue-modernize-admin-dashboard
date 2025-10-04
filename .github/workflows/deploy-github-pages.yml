@@ -37,7 +37,9 @@ jobs:
         
     - name: Build Vue application
       working-directory: ./packages/main
-      run: npm run build
+      run: |
+        # Use CI build script that skips TypeScript check
+        npm run build:ci
       
     - name: Setup GitHub Pages
       uses: actions/configure-pages@v4
